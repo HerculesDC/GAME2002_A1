@@ -32,6 +32,7 @@ class Game : sf::NonCopyable {
 		sf::Music mMusic;
 		sf::Text mText;
 		sf::RenderWindow mWindow;
+		static const sf::Time TimePerFrame;
 		static const float mWindowHeight;
 		static const float mWindowWidth;
 };
