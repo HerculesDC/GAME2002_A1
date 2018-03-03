@@ -1,0 +1,6 @@
+﻿  game.cpp
+c:\users\hercu\documents\schoolstuff\sem4\mmd\game2002_diascampos_hercules_a1\template\game.cpp(6): warning C4244: 'argument': conversion from 'const float' to 'unsigned int', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Main.cpp
+  Template.vcxproj -> C:\Users\hercu\Documents\SchoolStuff\SEM4\MMD\GAME2002_DiasCampos_Hercules_A1\Template\Debug\Template.exe
