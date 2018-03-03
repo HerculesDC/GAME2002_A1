@@ -21,7 +21,7 @@ float Ball::getXVelocity() { return xVelocity; }
 
 float Ball::getYVelocity() { return yVelocity; }
 
-void Ball::hitBottom() { position = sf::Vector2<float>(640, 0); }
+void Ball::hitBottom() { position -= sf::Vector2<float>(0, 799); }
 
 void Ball::reboundBatOrTop() { yVelocity *= -1; }
 

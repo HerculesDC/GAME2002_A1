@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include <sstream>
 
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
