@@ -1,7 +1,7 @@
 #include "ball.hpp"
 
-float Ball::xVelocity = 1.0f;
-float Ball::yVelocity = 1.0f;
+float Ball::xVelocity = 100.0f;
+float Ball::yVelocity = 100.0f;
 
 Ball::Ball() : ballShape(10.0f, 4), position(640, 0) { 
 	
@@ -21,13 +21,13 @@ float Ball::getXVelocity() { return xVelocity; }
 
 float Ball::getYVelocity() { return yVelocity; }
 
-void Ball::hitBottom() { position -= sf::Vector2<float>(0, 799); }
+void Ball::hitBottom() { position.y -= 799.0f; }
 
 void Ball::reboundBatOrTop() { yVelocity *= -1; }
 
 void Ball::reboundSides() { xVelocity *= -1; }
 
-void Ball::update() { 
-	position += sf::Vector2<float>(xVelocity, yVelocity);
+void Ball::update(float timeScale) { 
+	position += timeScale * sf::Vector2<float>(xVelocity, yVelocity);
 	ballShape.setPosition(position);
 }

@@ -10,8 +10,8 @@ class Bat {
 		~Bat();
 		sf::Vector2<float> getPosition();
 		sf::RectangleShape getShape();
-		void moveLeft();
-		void moveRight();
+		void moveLeft(float);
+		void moveRight(float);
 		void update();
 
 	private:

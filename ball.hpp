@@ -15,7 +15,7 @@ class Ball {
 		void hitBottom();
 		void reboundBatOrTop();
 		void reboundSides();
-		void update();
+		void update(float);
 		
 	private:
 		sf::CircleShape ballShape;

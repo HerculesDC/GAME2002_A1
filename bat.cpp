@@ -1,6 +1,6 @@
 #include "bat.hpp"
 
-const float Bat::batSpeed = 50.0f;
+const float Bat::batSpeed = 1000.0f;
 
 Bat::Bat() : batShape(sf::Vector2<float>(60.0f, 10.0f)), position(0,780) {
 	
@@ -16,8 +16,8 @@ sf::Vector2<float> Bat::getPosition() { return position; }
 
 sf::RectangleShape Bat::getShape() { return batShape; }
 
-void Bat::moveLeft() { position -= sf::Vector2<float>(batSpeed, 0.0f); }
+void Bat::moveLeft(float timeScale) { position.x -= batSpeed*timeScale; }
 
-void Bat::moveRight() { position += sf::Vector2<float>(batSpeed, 0.0f); }
+void Bat::moveRight(float timeScale) { position.x += batSpeed*timeScale; }
 
 void Bat::update() { batShape.setPosition(position); }

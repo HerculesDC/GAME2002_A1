@@ -26,22 +26,22 @@ Game::Game() : mWindow(sf::VideoMode(mWindowWidth, mWindowHeight), "GAME2002: As
 	mText.setPosition(10.0f, 10.0f);
 	
 	//music loading and play:
-	if (!mMusic.openFromFile("Media/Music/BoxCat_Games_-_11_-_Assignment.mp3")) return;
-	mMusic.play();
+	if (!mMusic.openFromFile("Media/Music/Deeper.ogg")) return;
+	//mMusic.play();
 }
 
 Game::~Game() {}
 
-void Game::processEvents() {
+void Game::processEvents(sf::Time elapsedTime) {
 
 	sf::Event event;
 	
 	while (mWindow.pollEvent(event)) {
-		//REDESIGN TO INCORPORATE TIME:
 		switch (event.type) {
 			case sf::Event::KeyPressed: {
-				if (event.key.code == sf::Keyboard::A && mBat.getPosition().x > 0) mBat.moveLeft();
-				if (event.key.code == sf::Keyboard::D && mBat.getPosition().x < (Game::mWindowWidth-mBat.getShape().getSize().x)) mBat.moveRight();
+				//put time here just because... (lazy design choice, I know, but it was quicker...)
+				if (event.key.code == sf::Keyboard::A && mBat.getPosition().x > 0) mBat.moveLeft(elapsedTime.asSeconds());
+				if (event.key.code == sf::Keyboard::D && mBat.getPosition().x < Game::mWindowWidth-mBat.getShape().getSize().x) mBat.moveRight(elapsedTime.asSeconds());
 			}
 		}
 	}
@@ -57,17 +57,21 @@ void Game::render() {
 	mWindow.display();
 }
 
-void Game::update() {
+void Game::update(sf::Time elapsedTime) {
 	if (mLives > 0) {
 
-		if (mBall.getPosition().x > Game::mWindowWidth || mBall.getPosition().x < 0) mBall.reboundSides();
+		if (mBall.getPosition().x > (Game::mWindowWidth-(2*mBall.getShape().getRadius())) || mBall.getPosition().x < 0) mBall.reboundSides();
 		if (mBall.getPosition().y < 0) mBall.reboundBatOrTop();
+		if (mBall.getPosition().y >= (mBat.getPosition().y-mBall.getShape().getRadius()) &&
+			mBall.getPosition().x > mBat.getPosition().x &&
+			mBall.getPosition().x < (mBat.getPosition().x + mBat.getShape().getSize().x))
+			mBall.reboundBatOrTop();
 		if (mBall.getPosition().y > Game::mWindowHeight) {
 			mLives -= 1;
 			mBall.hitBottom();
 		}
 
-		mBall.update();
+		mBall.update(elapsedTime.asSeconds());
 		mBat.update();
 	}
 }
@@ -85,11 +89,10 @@ void Game::run() {
 		while (timeSinceLastUpdate > TimePerFrame) {
 			timeSinceLastUpdate -= TimePerFrame;
 			
-			processEvents();
-			update();
+			processEvents(TimePerFrame);
+			update(TimePerFrame);
 		}
 
 		render();
 	}
 }
-
