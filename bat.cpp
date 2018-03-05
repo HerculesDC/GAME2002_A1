@@ -1,6 +1,6 @@
 #include "bat.hpp"
 
-const float Bat::batSpeed = 1000.0f;
+const float Bat::batSpeed = 2000.0f;
 
 Bat::Bat() : batShape(sf::Vector2<float>(60.0f, 10.0f)), position(0,780) {
 	

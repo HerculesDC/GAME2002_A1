@@ -1,7 +1,7 @@
 #include "ball.hpp"
 
-float Ball::xVelocity = 100.0f;
-float Ball::yVelocity = 100.0f;
+float Ball::xVelocity = 500.0f;
+float Ball::yVelocity = 500.0f;
 
 Ball::Ball() : ballShape(10.0f, 4), position(640, 0) { 
 	

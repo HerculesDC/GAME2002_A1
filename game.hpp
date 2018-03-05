@@ -16,6 +16,7 @@ class Game : sf::NonCopyable {
 		Game();
 		~Game();
 		void processEvents(sf::Time);
+		void updateText();
 		void update(sf::Time);
 		void render();
 		void run();
